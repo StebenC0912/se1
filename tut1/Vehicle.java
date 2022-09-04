@@ -96,6 +96,7 @@ class Vehicle {
         }
         return true;
     }
+    
 
     @Override
     public String toString() {

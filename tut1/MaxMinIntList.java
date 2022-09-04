@@ -1,6 +1,5 @@
 package tut1;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class MaxMinIntList extends ArrayList<Integer>{
     public Object getMin(){

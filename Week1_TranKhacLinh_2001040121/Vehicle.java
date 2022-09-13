@@ -10,7 +10,7 @@ class Vehicle {
     private int seatingCapacity;
     private String placeA;
     private String placeB;
-
+    public Vehicle(){}
     public Vehicle(String name, double width, double height, double length, double weight, int seatingCapacity,String register, String placeA, String placeB) {
         this.name = name;
         this.width = width;

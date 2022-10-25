@@ -1,6 +1,5 @@
-package week8_TranKhacLinh_200140121;
+package week8_TranKhacLinh_200140121.stocktrader.entities;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class StockInformation {

@@ -1,4 +1,4 @@
-package week8_TranKhacLinh_200140121;
+package week8_TranKhacLinh_200140121.stocktrader.entities;
 
 public class Stock {
     private String name;
@@ -34,5 +34,5 @@ public class Stock {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    
+
 }

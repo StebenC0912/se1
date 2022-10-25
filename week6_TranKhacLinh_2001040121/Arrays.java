@@ -1,3 +1,5 @@
+package week6_TranKhacLinh_2001040121;
+
 /**
  * @overview
  *           a program that implements solutions for a number of problems
@@ -24,7 +26,7 @@ public class Arrays {
 
   /**
    * 
-   * @requires 
+   * @requires
    *           a != null /\ a.length > 0
    * @effects
    *          return the minimum element of a

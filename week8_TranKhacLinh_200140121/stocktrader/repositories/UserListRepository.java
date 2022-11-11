@@ -2,7 +2,7 @@ package week8_TranKhacLinh_200140121.stocktrader.repositories;
 
 import java.util.ArrayList;
 
-import week8_TranKhacLinh_200140121.stocktrader.entities.User;
+import week8_TranKhacLinh_200140121.stocktrader.model.entities.User;
 
 public class UserListRepository {
     private ArrayList<User> users;

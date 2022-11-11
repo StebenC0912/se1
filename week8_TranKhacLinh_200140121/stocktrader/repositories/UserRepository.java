@@ -2,9 +2,8 @@ package week8_TranKhacLinh_200140121.stocktrader.repositories;
 
 import java.util.ArrayList;
 
-
-import week8_TranKhacLinh_200140121.stocktrader.entities.Stock;
-import week8_TranKhacLinh_200140121.stocktrader.entities.StockInformation;
+import week8_TranKhacLinh_200140121.stocktrader.model.entities.Stock;
+import week8_TranKhacLinh_200140121.stocktrader.model.entities.StockInformation;
 
 public class UserRepository {
     private Double userMoney;

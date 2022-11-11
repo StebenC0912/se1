@@ -1,4 +1,4 @@
-package week8_TranKhacLinh_200140121.stocktrader.entities;
+package week8_TranKhacLinh_200140121.stocktrader.model.entities;
 
 public class Stock {
     private String name;

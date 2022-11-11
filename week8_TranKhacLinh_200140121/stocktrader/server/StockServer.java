@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
-import week8_TranKhacLinh_200140121.stocktrader.entities.Stock;
-import week8_TranKhacLinh_200140121.stocktrader.entities.StockInformation;
-import week8_TranKhacLinh_200140121.stocktrader.entities.User;
+import week8_TranKhacLinh_200140121.stocktrader.model.entities.Stock;
+import week8_TranKhacLinh_200140121.stocktrader.model.entities.StockInformation;
+import week8_TranKhacLinh_200140121.stocktrader.model.entities.User;
 
 public class StockServer {
     private Map<Integer, Stock> map;

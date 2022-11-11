@@ -2,7 +2,7 @@ package week8_TranKhacLinh_200140121.stocktrader.repositories;
 
 import java.util.ArrayList;
 
-import week8_TranKhacLinh_200140121.stocktrader.entities.StockInformation;
+import week8_TranKhacLinh_200140121.stocktrader.model.entities.StockInformation;
 
 public class StockCommandRepository {
     private ArrayList<StockInformation> userHistory;

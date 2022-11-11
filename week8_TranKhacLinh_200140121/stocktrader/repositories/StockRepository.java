@@ -1,7 +1,7 @@
 package week8_TranKhacLinh_200140121.stocktrader.repositories;
-import week8_TranKhacLinh_200140121.stocktrader.entities.Stock;
-
 import java.util.ArrayList;
+
+import week8_TranKhacLinh_200140121.stocktrader.model.entities.Stock;
 public class StockRepository {
     private ArrayList<Stock> stocks;
 

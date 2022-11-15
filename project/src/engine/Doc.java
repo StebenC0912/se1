@@ -44,6 +44,7 @@ public class Doc {
     //Two Doc objects are equal if their titles and bodies contain the same words in the
     //same order. To determine if two words are equal, use the equals() method
     //from the Word class
+    @Override
     public boolean equals(Object o) {
         if (o instanceof Doc) {
             Doc doc = (Doc) o;

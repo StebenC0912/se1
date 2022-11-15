@@ -7,13 +7,25 @@ public class Doc {
     private String content;
     private List<Word> title;
     private List<Word> body;
+
     public Doc(String content) {
         this.content = content;
+        this.title = new ArrayList<>();
+        this.body = new ArrayList<>();
+        String[] lines = content.split("\\r?\\n");
+        for (String line : lines) {
+            String[] words = line.split(" ");
+            for (String word : words) {
+                if (line.equals(lines[0])) {
+                    title.add(Word.createWord(word));
+                } else {
+                    body.add(Word.createWord(word));
+                }
+            }
+        }
     }
 
     public List<Word> getTitle() {
-        List<Word> title = new ArrayList<>();
-
         return title;
     }
 
@@ -27,5 +39,18 @@ public class Doc {
 
     public void setBody(List<Word> body) {
         this.body = body;
+    }
+
+    //Two Doc objects are equal if their titles and bodies contain the same words in the
+    //same order. To determine if two words are equal, use the equals() method
+    //from the Word class
+    public boolean equals(Object o) {
+        if (o instanceof Doc) {
+            Doc doc = (Doc) o;
+            if (doc.getTitle().equals(this.getTitle()) && doc.getBody().equals(this.getBody())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

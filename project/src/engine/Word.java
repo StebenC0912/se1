@@ -24,13 +24,14 @@ public class Word {
         }
         return true;
     }
+
     public String getPrefix() {
         String prefix = "";
         if (isValidWord()) {
             return "";
         }
         for (int i = 0; i < words.length(); i++) {
-            if(!(words.charAt(i) > 'a' && words.charAt(i) < 'z') && !(words.charAt(i) > 'A' && words.charAt(i) < 'Z')) {
+            if (!(words.charAt(i) > 'a' && words.charAt(i) < 'z') && !(words.charAt(i) > 'A' && words.charAt(i) < 'Z')) {
                 prefix.concat(String.valueOf(words.charAt(i)));
             } else {
                 break;
@@ -38,13 +39,14 @@ public class Word {
         }
         return prefix;
     }
+
     public String getSuffix() {
         String suffix = "";
         if (isValidWord()) {
             return "";
         }
         for (int i = words.length() - 1; i >= 0; i--) {
-            if(!(words.charAt(i) > '1' && words.charAt(i) < '9') && !(words.charAt(i) > 'a' && words.charAt(i) < 'z') && !(words.charAt(i) > 'A' && words.charAt(i) < 'Z')) {
+            if (!(words.charAt(i) > '1' && words.charAt(i) < '9') && !(words.charAt(i) > 'a' && words.charAt(i) < 'z') && !(words.charAt(i) > 'A' && words.charAt(i) < 'Z')) {
                 suffix.concat(String.valueOf(words.charAt(i)));
             } else {
                 break;
@@ -52,6 +54,7 @@ public class Word {
         }
         return suffix;
     }
+
     public String getText() {
         if (isValidWord()) {
             return words;
@@ -60,11 +63,13 @@ public class Word {
     }
 
 
-    
-
     public boolean equals(Object o) {
+        if (createWord(o.toString()).getText().toLowerCase() == this.getText().toLowerCase()) {
+            return true;
+        }
         return false;
     }
+
     public boolean isKeyword() {
         for (String s : stopWords) {
             if (words.equals(s)) return true;
@@ -74,13 +79,14 @@ public class Word {
 
     @Override
     public String toString() {
-        return "Word{}";
+        return words;
     }
 
     public static Word createWord(String rawText) {
         Word newWord = new Word(rawText);
         return newWord;
     }
+
     public static boolean loadStopWords(String fileName) {
         try {
             FileReader fr = new FileReader(fileName);
@@ -96,4 +102,5 @@ public class Word {
             return false;
         }
     }
+
 }

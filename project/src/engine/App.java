@@ -1,7 +1,6 @@
 package engine;
 
-import javax.management.Query;
-import javax.print.Doc;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -71,8 +70,7 @@ public class App {
         if (!Word.createWord("content").equals(Word.createWord("\"content\".")))
             System.out.println("Word.equals() should compare the text part only, so 'content' should be equal to '\"content\".'");
 
-        Doc d = new Doc("Object-oriented \"design\": with UML's diagrams\n" +
-                "Definition: An object-oriented system's context made up of (interacting) objects.");
+        Doc d = new Doc("Object-oriented \"design\": with UML's diagrams\n" + "Definition: An object-oriented system's context made up of (interacting) objects.");
         Query q = new Query("the <context> of observer: design");
         // Testing Doc & Query
         Object[] tests = {d.getTitle(), d.getBody(), q.getKeywords()};

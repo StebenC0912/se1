@@ -41,9 +41,10 @@ public class Doc {
         this.body = body;
     }
 
-    //Two Doc objects are equal if their titles and bodies contain the same words in the
-    //same order. To determine if two words are equal, use the equals() method
-    //from the Word class
+    public String getContent() {
+        return content;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o instanceof Doc) {

@@ -4,25 +4,38 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Word {
     public static Set<String> stopWords = new HashSet<>();
     private String words;
-
 
     private Word(String words) {
         this.words = words;
     }
 
     public boolean isValidWord() {
+        if (words.length() == 0) {
+            return false;
+        }
+        boolean valid = false;
+        int countLetter = 0;
+        // all characters in the word must be letters
+        // check if string have space return false
         for (int i = 0; i < words.length(); i++) {
-            if (!Character.isDigit(words.charAt(i))) {
-                return false;
+            if (Character.isLetter(words.charAt(i))) {
+                valid = true;
+                countLetter++;
+            } else {
+                valid = false;
+                break;
             }
         }
-        return true;
+        if (countLetter < words.length()) {
+            valid = false;
+        }
+
+        return valid;
     }
 
     public String getPrefix() {
@@ -71,10 +84,13 @@ public class Word {
     }
 
     public boolean isKeyword() {
-        for (String s : stopWords) {
-            if (words.equals(s)) return true;
+        if (!isValidWord()) {
+            return false;
         }
-        return false;
+        for (String s : stopWords) {
+            if (words.equals(s)) return false;
+        }
+        return true;
     }
 
     @Override
@@ -102,5 +118,6 @@ public class Word {
             return false;
         }
     }
+
 
 }

@@ -23,12 +23,15 @@ public class Word {
         // all characters in the word must be letters
         // check if string have space return false
         for (int i = 0; i < words.length(); i++) {
-            if (Character.isLetter(words.charAt(i))) {
-                valid = true;
+            if (Character.isDigit(words.charAt(i))) {
+                return false;
+            } else if (Character.isLetter(words.charAt(i))) {
                 countLetter++;
+                valid = true;
             } else {
-                valid = false;
-                break;
+                if (words.charAt(i) == ' ') {
+                    return false;
+                }
             }
         }
         if (countLetter < words.length()) {
@@ -40,12 +43,12 @@ public class Word {
 
     public String getPrefix() {
         String prefix = "";
-        if (isValidWord()) {
-            return "";
+        if (!isValidWord()) {
+            return prefix;
         }
         for (int i = 0; i < words.length(); i++) {
-            if (!(words.charAt(i) > 'a' && words.charAt(i) < 'z') && !(words.charAt(i) > 'A' && words.charAt(i) < 'Z')) {
-                prefix.concat(String.valueOf(words.charAt(i)));
+            if (!Character.isLetter(words.charAt(i))) {
+                prefix += words.charAt(i);
             } else {
                 break;
             }
@@ -55,11 +58,11 @@ public class Word {
 
     public String getSuffix() {
         String suffix = "";
-        if (isValidWord()) {
+        if (!isValidWord()) {
             return "";
         }
         for (int i = words.length() - 1; i >= 0; i--) {
-            if (!(words.charAt(i) > '1' && words.charAt(i) < '9') && !(words.charAt(i) > 'a' && words.charAt(i) < 'z') && !(words.charAt(i) > 'A' && words.charAt(i) < 'Z')) {
+            if (!Character.isLetter(words.charAt(i))) {
                 suffix.concat(String.valueOf(words.charAt(i)));
             } else {
                 break;
@@ -69,7 +72,7 @@ public class Word {
     }
 
     public String getText() {
-        if (isValidWord()) {
+        if (!isValidWord()) {
             return words;
         }
         return words.replace(getPrefix(), "").replace(getSuffix(), "");

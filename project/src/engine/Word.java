@@ -34,9 +34,7 @@ public class Word {
                 }
             }
         }
-        if (countLetter < words.length()) {
-            valid = false;
-        }
+
 
         return valid;
     }
@@ -57,25 +55,28 @@ public class Word {
     }
 
     public String getSuffix() {
-        String suffix = "";
-        if (!isValidWord()) {
-            return "";
-        }
-        for (int i = words.length() - 1; i >= 0; i--) {
-            if (!Character.isLetter(words.charAt(i))) {
-                suffix.concat(String.valueOf(words.charAt(i)));
-            } else {
-                break;
-            }
-        }
-        return suffix;
+
+        return words.replace(getPrefix(), "").replace(getText(), "");
     }
 
     public String getText() {
         if (!isValidWord()) {
             return words;
         }
-        return words.replace(getPrefix(), "").replace(getSuffix(), "");
+        String text = "";
+        String prefix = getPrefix();
+
+        for (int i = 0; i < words.length(); i++) {
+            if (words.charAt(i) == prefix.charAt(0)) {
+               continue;
+            }
+            if (Character.isLetter(words.charAt(i))) {
+                text += words.charAt(i);
+            } else {
+                break;
+            }
+        }
+        return text;
     }
 
 
@@ -121,6 +122,7 @@ public class Word {
             return false;
         }
     }
+
 
 
 }

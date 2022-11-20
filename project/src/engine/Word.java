@@ -72,7 +72,7 @@ public class Word {
         String prefix = getPrefix();
         String clone = words.replace(prefix, "");
         for (int i = 0; i < clone.length(); i++) {
-            if (Character.isLetter(clone.charAt(i))) {
+            if (Character.isLetter(clone.charAt(i)) || clone.charAt(i) == '-') {
                 text += clone.charAt(i);
             } else {
                 break;

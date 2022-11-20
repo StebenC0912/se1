@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Query {
-    private List<String> queryWords;
+    private List<String> queryWords = new ArrayList<String>();
     public Query(String searchPhrase) {
         String[] words = searchPhrase.split(" ");
         for (String word : words) {

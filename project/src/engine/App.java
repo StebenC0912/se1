@@ -62,7 +62,7 @@ public class App {
         if (!Word.createWord("«WORD»").getPrefix().equals("«"))
             System.out.println("Word.createWord(): the prefix of '«WORD»' should be '«'");
         if (!Word.createWord("«Word»").getSuffix().equals("»"))
-            System.out.println("Word.createWord(): the prefix of '«Word»' should be '»'");
+            System.out.println("Word.createWord(): the suffix of '«Word»' should be '»'");
         if (!Word.createWord("apple").equals(Word.createWord("apple")))
             System.out.println("Word.equals() failed with case 'apple'");
         if (!Word.createWord("apple").equals(Word.createWord("Apple")))

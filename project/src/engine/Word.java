@@ -40,6 +40,9 @@ public class Word {
     }
 
     public String getPrefix() {
+        if (!isValidWord()) {
+            return "";
+        }
         String prefix = "";
         if (!isValidWord()) {
             return prefix;
@@ -55,7 +58,9 @@ public class Word {
     }
 
     public String getSuffix() {
-
+        if (!isValidWord()) {
+            return "";
+        }
         return words.replace(getPrefix(), "").replace(getText(), "");
     }
 
@@ -65,13 +70,10 @@ public class Word {
         }
         String text = "";
         String prefix = getPrefix();
-
-        for (int i = 0; i < words.length(); i++) {
-            if (words.charAt(i) == prefix.charAt(0)) {
-               continue;
-            }
-            if (Character.isLetter(words.charAt(i))) {
-                text += words.charAt(i);
+        String clone = words.replace(prefix, "");
+        for (int i = 0; i < clone.length(); i++) {
+            if (Character.isLetter(clone.charAt(i))) {
+                text += clone.charAt(i);
             } else {
                 break;
             }
@@ -123,6 +125,13 @@ public class Word {
         }
     }
 
+    public static void main(String[] args) {
 
+        Word word = Word.createWord("<hello>");
+        System.out.println(word.getText());
+        System.out.println(word.getPrefix());
+        System.out.println(word.getSuffix());
+
+    }
 
 }

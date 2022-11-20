@@ -83,7 +83,7 @@ public class Word {
 
 
     public boolean equals(Object o) {
-        if (createWord(o.toString()).getText().toLowerCase() == this.getText().toLowerCase()) {
+        if (createWord(o.toString()).getText().toLowerCase().equals(this.getText().toLowerCase())) {
             return true;
         }
         return false;
@@ -125,13 +125,6 @@ public class Word {
         }
     }
 
-    public static void main(String[] args) {
 
-        Word word = Word.createWord("<hello>");
-        System.out.println(word.getText());
-        System.out.println(word.getPrefix());
-        System.out.println(word.getSuffix());
-
-    }
 
 }

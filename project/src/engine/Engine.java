@@ -3,6 +3,7 @@ package engine;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Engine {
@@ -21,6 +22,27 @@ public class Engine {
                 count++;
             }
         }
+        // load content of files into docs
+        docs = new Doc[count];
+        int i = 0;
+        for (File file : listOfFiles) {
+            if (file.isFile()) {
+                try {
+                    FileReader fileReader = new FileReader(file);
+                    StringBuilder sb = new StringBuilder();
+                    int c;
+                    while ((c = fileReader.read()) != -1) {
+                        sb.append((char) c);
+                    }
+                    docs[i] = new Doc(sb.toString());
+                    i++;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
         return count;
     }
 
@@ -31,14 +53,15 @@ public class Engine {
     //results. Refer to the classes above to know the expected search results.
     public List<Result> search(Query q) {
         List<Result> results = new ArrayList<>();
-        for (Doc doc : docs) {
-            List<Match> matches = q.matchAgainst(doc);
+        for (Doc d : docs) {
+            List<Match> matches = q.matchAgainst(d);
             if (matches.size() > 0) {
-                results.add(new Result(doc, matches));
+                results.add(new Result(d, matches));
             }
         }
-        return results;
-    }
+
+
+        return results;    }
     // Converts a list of search results into HTML format. The output of this method is
     // the output of Result.htmlHighlight() combined together (without any
     // delimiter). Refer to the 3rd line of the file testCases.html for a specific example.

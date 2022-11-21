@@ -1,6 +1,6 @@
 package engine;
 
-public class Match {
+public class Match  implements Comparable<Match> {
     private Doc d;
     private Word w;
     private int freq;

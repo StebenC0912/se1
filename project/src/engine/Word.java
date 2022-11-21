@@ -14,6 +14,7 @@ public class Word {
         this.words = words;
     }
 
+
     public boolean isValidWord() {
         if (words.length() == 0) {
             return false;
@@ -58,27 +59,31 @@ public class Word {
     }
 
     public String getSuffix() {
+        int suffixIndex = words.length();
         if (!isValidWord()) {
             return "";
+        } else {
+            if (words.contains("'s")) {
+                return "'s";
+            }
+            for (int i = words.length() - 1; i >= 0; i--) {
+                if (Character.isAlphabetic(words.charAt(i))) {
+                    suffixIndex = i;
+                    break;
+                }
+            }
         }
-        return words.replace(getPrefix(), "").replace(getText(), "");
+        return words.substring(suffixIndex + 1);
     }
 
     public String getText() {
         if (!isValidWord()) {
             return words;
         }
-        String text = "";
-        String prefix = getPrefix();
-        String clone = words.replace(prefix, "");
-        for (int i = 0; i < clone.length(); i++) {
-            if (Character.isLetter(clone.charAt(i)) || clone.charAt(i) == '-') {
-                text += clone.charAt(i);
-            } else {
-                break;
-            }
-        }
-        return text;
+
+        StringBuilder sb = new StringBuilder(words);
+        String str = sb.delete(0, getPrefix().length()).toString();
+        return sb.delete(str.length() - getSuffix().length(), str.length()).toString();
     }
 
 
@@ -90,13 +95,7 @@ public class Word {
     }
 
     public boolean isKeyword() {
-        if (!isValidWord()) {
-            return false;
-        }
-        for (String s : stopWords) {
-            if (words.equals(s)) return false;
-        }
-        return true;
+        return isValidWord() && !stopWords.contains(getText().toLowerCase());
     }
 
     @Override
@@ -124,6 +123,7 @@ public class Word {
             return false;
         }
     }
+
 
 
 

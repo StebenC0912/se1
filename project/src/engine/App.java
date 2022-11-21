@@ -99,6 +99,7 @@ public class App {
             String[] wsf = (String[]) wordSuffixes[x];
             boolean[] wtp = (boolean[]) wordTypes[x];
             if (tmp.size() != listSizes[x]) {
+                System.out.println(tmp.size());
                 System.out.println(methods[x] + ": unexpected list length");
             } else {
                 for (int i = 0; i < tmp.size(); i++) {
@@ -117,6 +118,7 @@ public class App {
         List<Match> matches = q.matchAgainst(d);
         String[] matchedWords = {"design", "context"};
         if (matches.size() != 2) {
+            System.out.println(matches.size());
             System.out.println("Query.matchAgainst(): incorrect matches count (expected: 2)");
         }
         for (int i = 0; i < matches.size(); i++) {

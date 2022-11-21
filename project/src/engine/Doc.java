@@ -1,5 +1,6 @@
 package engine;
 
+import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,17 +30,11 @@ public class Doc {
         return title;
     }
 
-    public void setTitle(List<Word> title) {
-        this.title = title;
-    }
 
     public List<Word> getBody() {
         return body;
     }
 
-    public void setBody(List<Word> body) {
-        this.body = body;
-    }
 
     public String getContent() {
         return content;
@@ -55,4 +50,5 @@ public class Doc {
         }
         return false;
     }
+
 }

@@ -1,4 +1,4 @@
-package engine;
+package a1_2001040121;
 
 import java.util.List;
 
@@ -30,16 +30,18 @@ public class Result implements Comparable<Result> {
         }
         return totalFirstIndex / matches.size();
     }
-    //Highlight the matched words in the document using HTML markups. For a
-    //matched word in the document’s title, put the tag <u> and </u> around the
-    //word’s text part (the <u> tag should not affect the word’s prefix and suffix). For a
-    //matched word in the document’s body, surround the word’s text part with the tag
-    //<b> and </b>
+
+    // Highlight the matched words in the document using HTML markups. For a
+    // matched word in the document’s title, put the tag <u> and </u> around the
+    // word’s text part (the <u> tag should not affect the word’s prefix and
+    // suffix). For a
+    // matched word in the document’s body, surround the word’s text part with the
+    // tag
+    // <b> and </b>
     public String htmlHighlight() {
         StringBuilder sb = new StringBuilder();
         // html for title
         sb.append("<h3>");
-
         for (Word wordInTitle : d.getTitle()) {
             boolean isKeyWord = false;
             for (Match match : matches) {
@@ -48,8 +50,11 @@ public class Result implements Comparable<Result> {
                     break;
                 }
             }
-            if (isKeyWord) {sb.append(wordInTitle.getPrefix() + "<u>" + wordInTitle.getText() + "</u>" + wordInTitle.getSuffix());}
-            else {sb.append(wordInTitle);}
+            if (isKeyWord) {
+                sb.append(wordInTitle.getPrefix() + "<u>" + wordInTitle.getText() + "</u>" + wordInTitle.getSuffix());
+            } else {
+                sb.append(wordInTitle);
+            }
             sb.append(" ");
         }
         sb.delete(sb.toString().length() - 1, sb.toString().length());
@@ -62,8 +67,10 @@ public class Result implements Comparable<Result> {
                     isKeyWord = true;
                 }
             }
-            if (isKeyWord) sb.append(wordInBody.getPrefix() + "<b>" + wordInBody.getText() + "</b>" + wordInBody.getSuffix());
-            else sb.append(wordInBody);
+            if (isKeyWord)
+                sb.append(wordInBody.getPrefix() + "<b>" + wordInBody.getText() + "</b>" + wordInBody.getSuffix());
+            else
+                sb.append(wordInBody);
             sb.append(" ");
         }
         sb.delete(sb.toString().length() - 1, sb.toString().length());
@@ -71,11 +78,11 @@ public class Result implements Comparable<Result> {
         return sb.toString();
     }
 
-    //These are criteria to determine if Result A is greater than Result B
-    //(in descending order of priority):
-    //A has greater match count than B
-    //A has greater total frequency than B
-    //A has lower average first index than B
+    // These are criteria to determine if Result A is greater than Result B
+    // (in descending order of priority):
+    // A has greater match count than B
+    // A has greater total frequency than B
+    // A has lower average first index than B
     public int compareTo(Result o) {
         if (this.getMatches().size() > o.getMatches().size()) {
             return 1;
@@ -98,6 +105,3 @@ public class Result implements Comparable<Result> {
         return d;
     }
 }
-
-
-

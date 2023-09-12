@@ -9,11 +9,10 @@ public class Doc {
     private List<Word> body;
 
     public Doc(String content) {
-        this.content = content;
-        this.title = new ArrayList<>();
-        this.body = new ArrayList<>();
         String[] lines = content.split("\\n");
         String titleString = lines[0];
+        List<Word> title = new ArrayList<>();
+        List<Word> body = new ArrayList<>();
         for (String wordString : titleString.split("\\s+")) {
             Word word = Word.createWord(wordString);
             title.add(word);
@@ -23,6 +22,9 @@ public class Doc {
             Word word = Word.createWord(wordString);
             body.add(word);
         }
+        this.content = content;
+        this.title = title;
+        this.body = body;
     }
 
     public List<Word> getTitle() {

@@ -1,10 +1,11 @@
 package a1_2001040121;
 
-public class Match  implements Comparable<Match> {
+public class Match implements Comparable<Match> {
     private Doc d;
     private Word w;
     private int freq;
     private int firstIndex;
+
     public Match(Doc d, Word w, int freq, int firstIndex) {
         this.d = d;
         this.w = w;
@@ -19,13 +20,19 @@ public class Match  implements Comparable<Match> {
     public int getFirstIndex() {
         return firstIndex;
     }
+
     public Word getWord() {
         return w;
     }
 
-    //Compare this with another Match object by the first index. This method obeys
-    //the standard behavior specified by Java. Match object A is greater than Match
-    //object B if the first index of A is greater than the first index of B.
+    /**
+     * Compares this Match object with the specified Match object for order.
+     * 
+     * @param o the Match object to be compared with
+     * 
+     * @return 1 if this is greater than o, -1 if this is less than o, 0 if this is
+     * equal to o
+     */
     public int compareTo(Match o) {
         if (this.getFirstIndex() > o.getFirstIndex()) {
             return 1;

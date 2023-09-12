@@ -14,7 +14,11 @@ public class Word {
         this.words = words;
     }
 
-
+    /**
+     * Check if the word is valid
+     * 
+     * @return true if the word is valid, false otherwise
+     */
     public boolean isValidWord() {
         if (words.length() == 0) {
             return false;
@@ -39,6 +43,11 @@ public class Word {
         return valid;
     }
 
+    /**
+     * Get the prefix of the word
+     * 
+     * @return the prefix of the word
+     */
     public String getPrefix() {
         if (!isValidWord()) {
             return "";
@@ -57,6 +66,11 @@ public class Word {
         return prefix;
     }
 
+    /**
+     * Get the suffix of the word
+     * 
+     * @return the suffix of the word
+     */
     public String getSuffix() {
         int suffixIndex = words.length();
         if (!isValidWord()) {
@@ -79,6 +93,12 @@ public class Word {
         return words.substring(suffixIndex + 1);
     }
 
+    /**
+     * Get the text of the word
+     * Check if the word is valid
+     * 
+     * @return the text of the word
+     */
     public String getText() {
         if (!isValidWord()) {
             return words;
@@ -88,9 +108,16 @@ public class Word {
         return sb.delete(str.length() - getSuffix().length(), str.length()).toString();
     }
 
-
+    /**
+     * Check if the word is equal to another word
+     * 
+     * @param o the word to be compared with
+     * @return true if the word is equal to another word, false otherwise
+     */
     public boolean equals(Object o) {
-        if (createWord(o.toString()).getText().toLowerCase().equals(this.getText().toLowerCase())) {
+        if (o == null) {
+            return false;
+        } else if (createWord(o.toString()).getText().equalsIgnoreCase(this.getText())) {
             return true;
         }
         return false;
@@ -106,14 +133,16 @@ public class Word {
     }
 
     public static Word createWord(String rawText) {
-        Word newWord = new Word(rawText);
-        return newWord;
+        return new Word(rawText);
     }
-
+    /**
+     * Load the stop words from a file
+     * @param fileName
+     * @return true if the stop words are loaded successfully, false otherwise
+     */
     public static boolean loadStopWords(String fileName) {
-        try {
-            FileReader fr = new FileReader(fileName);
-            BufferedReader br = new BufferedReader(fr);
+        try (FileReader fr = new FileReader(fileName);
+                BufferedReader br = new BufferedReader(fr)) {
             while (br.ready()) {
                 stopWords.add(br.readLine());
             }

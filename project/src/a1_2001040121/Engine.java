@@ -10,14 +10,18 @@ public class Engine {
     private Doc[] docs;
     private String dirname;
 
-    // Loads the documents from the folder specified by dirname (which resides under
-    //the project’s root folder) and returns the number of documents loaded. Refer to
-    //the Doc class for more information about a Doc object.
+    /**
+     * Loads the documents from the specified directory into the system.
+     * 
+     * @param dirname the name of the directory containing the documents
+     * @return the number of documents loaded into the system
+     */
     public int loadDocs(String dirname) {
         File folder = new File(dirname);
         File[] listOfFiles = folder.listFiles();
         int count = 0;
         for (File file : listOfFiles) {
+
             if (file.isFile()) {
                 count++;
             }
@@ -48,8 +52,13 @@ public class Engine {
         return docs;
     }
 
-    // Performs the search function of the engine. Returns a list of sorted search
-    // results. Refer to the classes above to know the expected search results.
+    /**
+     * Performs the search function of the engine.
+     * 
+     * @param q the query to be searched
+     * 
+     * @return a list of sorted search results
+     */
     public List<Result> search(Query q) {
         List<Result> results = new ArrayList<>();
         for (Doc d : docs) {
@@ -63,9 +72,13 @@ public class Engine {
         return results;
     }
 
-    // Converts a list of search results into HTML format. The output of this method is
-    // the output of Result.htmlHighlight() combined together (without any
-    // delimiter). Refer to the 3rd line of the file testCases.html for a specific example.
+    /**
+     * Converts a list of search results into HTML format.
+     * 
+     * @param results the list of search results
+     * 
+     * @return the HTML representation of the search results
+     */
     public String htmlResult(List<Result> results) {
         StringBuilder sb = new StringBuilder();
         for (Result result : results) {

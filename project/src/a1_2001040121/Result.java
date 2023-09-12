@@ -31,13 +31,15 @@ public class Result implements Comparable<Result> {
         return totalFirstIndex / matches.size();
     }
 
-    // Highlight the matched words in the document using HTML markups. For a
-    // matched word in the document’s title, put the tag <u> and </u> around the
-    // word’s text part (the <u> tag should not affect the word’s prefix and
-    // suffix). For a
-    // matched word in the document’s body, surround the word’s text part with the
-    // tag
-    // <b> and </b>
+    /**
+     * Highlight the matched words in the document using HTML markups. For a matched
+     * word in the document’s title, put the tag <u> and </u> around the word’s text
+     * part (the <u> tag should not affect the word’s prefix and suffix). For a
+     * matched word in the document’s body, surround the word’s text part with the
+     * tag <b> and </b>
+     * 
+     * @return the highlighted document
+     */
     public String htmlHighlight() {
         StringBuilder sb = new StringBuilder();
         // html for title
@@ -78,11 +80,12 @@ public class Result implements Comparable<Result> {
         return sb.toString();
     }
 
-    // These are criteria to determine if Result A is greater than Result B
-    // (in descending order of priority):
-    // A has greater match count than B
-    // A has greater total frequency than B
-    // A has lower average first index than B
+    /**
+     * Compares this Result object with the specified Result object for order.
+     * 
+     * @param o the Result object to be compared with
+     * @return 1 if this is greater than o, -1 if this is less than o, 0 if this is
+     */
     public int compareTo(Result o) {
         if (this.getMatches().size() > o.getMatches().size()) {
             return 1;

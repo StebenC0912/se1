@@ -11,10 +11,13 @@ public class Query {
     public Query(String searchPhrase) {
         this.searchPhrase = searchPhrase;
     }
-
+    /**
+     * 
+     * Get all keywords in the search phrase from 
+     * @return a list of keywords in the search phrase
+     */
     public List<Word> getKeywords() {
         List<Word> keywords = new ArrayList<>();
-        String[] words = searchPhrase.split(" ");
         for (String word : searchPhrase.split(" ")) {
             if (!Word.createWord(word).isKeyword()) {
                 continue;
@@ -23,10 +26,12 @@ public class Query {
         }
         return keywords;
     }
-
-    // Returns a list of matches against the input document. Sort matches by position
-    // where the keyword first appears in the document. See the Match class for more
-    // information about search matches.
+    /**
+     * Performs the search function of the engine.
+     * 
+     * @param q the query to be searched
+     * @return a list of sorted search results
+     */
     public List<Match> matchAgainst(Doc d) {
         List<Match> matches = new ArrayList<>();
         for (Word word : getKeywords()) {

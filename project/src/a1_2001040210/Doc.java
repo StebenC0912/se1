@@ -1,4 +1,4 @@
-package a1_2001040121;
+package a1_2001040210;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,36 +11,28 @@ public class Doc {
     public Doc(String content) {
         String[] lines = content.split("\\n");
         String titleString = lines[0];
-        List<Word> title = new ArrayList<>();
-        List<Word> body = new ArrayList<>();
+        List<Word> docTitle = new ArrayList<>();
+        List<Word> docBody = new ArrayList<>();
         for (String wordString : titleString.split("\\s+")) {
             Word word = Word.createWord(wordString);
-            title.add(word);
+            docTitle.add(word);
         }
         String bodyString = lines[1];
         for (String wordString : bodyString.split("\\s+")) {
             Word word = Word.createWord(wordString);
-            body.add(word);
+            docBody.add(word);
         }
         this.content = content;
-        this.title = title;
-        this.body = body;
+        this.title = docTitle;
+        this.body = docBody;
     }
 
     public List<Word> getTitle() {
         return title;
     }
-
-
     public List<Word> getBody() {
         return body;
     }
-
-
-    public String getContent() {
-        return content;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o instanceof Doc) {

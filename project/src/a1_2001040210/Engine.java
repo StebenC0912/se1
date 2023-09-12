@@ -1,4 +1,4 @@
-package a1_2001040121;
+package a1_2001040210;
 
 import java.io.File;
 import java.io.FileReader;
@@ -8,8 +8,6 @@ import java.util.List;
 
 public class Engine {
     private Doc[] docs;
-    private String dirname;
-
     /**
      * Loads the documents from the specified directory into the system.
      * 
@@ -21,18 +19,15 @@ public class Engine {
         File[] listOfFiles = folder.listFiles();
         int count = 0;
         for (File file : listOfFiles) {
-
             if (file.isFile()) {
                 count++;
             }
         }
-        // load content of files into docs
         docs = new Doc[count];
         int i = 0;
         for (File file : listOfFiles) {
             if (file.isFile()) {
-                try {
-                    FileReader fileReader = new FileReader(file);
+                try (FileReader fileReader = new FileReader(file)) {
                     StringBuilder sb = new StringBuilder();
                     int c;
                     while ((c = fileReader.read()) != -1) {
@@ -56,14 +51,13 @@ public class Engine {
      * Performs the search function of the engine.
      * 
      * @param q the query to be searched
-     * 
      * @return a list of sorted search results
      */
     public List<Result> search(Query q) {
         List<Result> results = new ArrayList<>();
         for (Doc d : docs) {
             List<Match> matches = q.matchAgainst(d);
-            if (matches.size() > 0) {
+            if (!matches.isEmpty()) {
                 results.add(new Result(d, matches));
             }
         }
@@ -76,7 +70,6 @@ public class Engine {
      * Converts a list of search results into HTML format.
      * 
      * @param results the list of search results
-     * 
      * @return the HTML representation of the search results
      */
     public String htmlResult(List<Result> results) {

@@ -1,4 +1,4 @@
-package a1_2001040121;
+package a1_2001040210;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,8 +6,6 @@ import java.util.List;
 
 public class Query {
     private String searchPhrase;
-    private List<String> queryWords = new ArrayList<String>();
-
     public Query(String searchPhrase) {
         this.searchPhrase = searchPhrase;
     }

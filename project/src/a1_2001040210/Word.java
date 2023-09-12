@@ -1,4 +1,4 @@
-package a1_2001040121;
+package a1_2001040210;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -20,26 +20,19 @@ public class Word {
      * @return true if the word is valid, false otherwise
      */
     public boolean isValidWord() {
-        if (words.length() == 0) {
+        if (words.length() == 0 || words.contains(" ")) {
             return false;
         }
         boolean valid = false;
-        int countLetter = 0;
         // all characters in the word must be letters
         // check if string have space return false
         for (int i = 0; i < words.length(); i++) {
             if (Character.isDigit(words.charAt(i))) {
                 return false;
             } else if (Character.isLetter(words.charAt(i))) {
-                countLetter++;
                 valid = true;
-            } else {
-                if (words.charAt(i) == ' ') {
-                    return false;
-                }
             }
         }
-
         return valid;
     }
 
@@ -53,9 +46,6 @@ public class Word {
             return "";
         }
         String prefix = "";
-        if (!isValidWord()) {
-            return prefix;
-        }
         for (int i = 0; i < words.length(); i++) {
             if (!Character.isLetter(words.charAt(i))) {
                 prefix += words.charAt(i);
@@ -75,19 +65,15 @@ public class Word {
         int suffixIndex = words.length();
         if (!isValidWord()) {
             return "";
-        } else {
-            if (words.contains("'")) {
-                if (words.contains("can't")) {
-                    return "";
-                }
-                int indexOfSingleQuote = words.lastIndexOf("'");
-                return words.substring(indexOfSingleQuote);
-            }
-            for (int i = words.length() - 1; i >= 0; i--) {
-                if (Character.isAlphabetic(words.charAt(i))) {
-                    suffixIndex = i;
-                    break;
-                }
+        }
+        if (words.contains("'")) {
+            int indexOfSingleQuote = words.lastIndexOf("'");
+            return words.substring(indexOfSingleQuote);
+        }
+        for (int i = words.length() - 1; i >= 0; i--) {
+            if (Character.isLetter(words.charAt(i))) {
+                suffixIndex = i;
+                break;
             }
         }
         return words.substring(suffixIndex + 1);
@@ -135,8 +121,10 @@ public class Word {
     public static Word createWord(String rawText) {
         return new Word(rawText);
     }
+
     /**
      * Load the stop words from a file
+     * 
      * @param fileName
      * @return true if the stop words are loaded successfully, false otherwise
      */

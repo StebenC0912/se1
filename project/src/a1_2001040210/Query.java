@@ -6,12 +6,16 @@ import java.util.List;
 
 public class Query {
     private String searchPhrase;
+
+    // constructor
     public Query(String searchPhrase) {
         this.searchPhrase = searchPhrase;
     }
+
     /**
      * 
-     * Get all keywords in the search phrase from 
+     * Get all keywords in the search phrase
+     * 
      * @return a list of keywords in the search phrase
      */
     public List<Word> getKeywords() {
@@ -24,6 +28,7 @@ public class Query {
         }
         return keywords;
     }
+
     /**
      * Performs the search function of the engine.
      * 

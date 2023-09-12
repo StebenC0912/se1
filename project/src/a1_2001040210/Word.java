@@ -7,11 +7,24 @@ import java.io.IOException;
 import java.util.*;
 
 public class Word {
-    public static Set<String> stopWords = new HashSet<>();
+    public static Set<String> stopWords;
     private String words;
 
     private Word(String words) {
         this.words = words;
+    }
+
+    public static Word createWord(String rawText) {
+        return new Word(rawText);
+    }
+
+    /**
+     * Check if the word is a keyword
+     * 
+     * @return true if the word is a keyword, false otherwise
+     */
+    public boolean isKeyword() {
+        return isValidWord() && !stopWords.contains(getText().toLowerCase());
     }
 
     /**
@@ -95,6 +108,27 @@ public class Word {
     }
 
     /**
+     * Load the stop words from a file
+     * 
+     * @param fileName
+     * @return true if the stop words are loaded successfully, false otherwise
+     */
+    public static boolean loadStopWords(String fileName) {
+        stopWords = new HashSet<>();
+        try (FileReader fr = new FileReader(fileName);
+                BufferedReader br = new BufferedReader(fr)) {
+            while (br.ready()) {
+                stopWords.add(br.readLine());
+            }
+            return true;
+        } catch (FileNotFoundException e) {
+            return false;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+    /**
      * Check if the word is equal to another word
      * 
      * @param o the word to be compared with
@@ -109,36 +143,8 @@ public class Word {
         return false;
     }
 
-    public boolean isKeyword() {
-        return isValidWord() && !stopWords.contains(getText().toLowerCase());
-    }
-
     @Override
     public String toString() {
         return words;
-    }
-
-    public static Word createWord(String rawText) {
-        return new Word(rawText);
-    }
-
-    /**
-     * Load the stop words from a file
-     * 
-     * @param fileName
-     * @return true if the stop words are loaded successfully, false otherwise
-     */
-    public static boolean loadStopWords(String fileName) {
-        try (FileReader fr = new FileReader(fileName);
-                BufferedReader br = new BufferedReader(fr)) {
-            while (br.ready()) {
-                stopWords.add(br.readLine());
-            }
-            return true;
-        } catch (FileNotFoundException e) {
-            return false;
-        } catch (IOException e) {
-            return false;
-        }
     }
 }

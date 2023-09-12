@@ -5,14 +5,14 @@ public class Match implements Comparable<Match> {
     private Word w;
     private int freq;
     private int firstIndex;
-
+    // constructor
     public Match(Doc d, Word w, int freq, int firstIndex) {
         this.d = d;
         this.w = w;
         this.freq = freq;
         this.firstIndex = firstIndex;
     }
-
+    // Getter
     public int getFreq() {
         return freq;
     }

@@ -43,6 +43,10 @@ public class Engine {
         return count;
     }
 
+    /**
+     * 
+     * @return the list of documents loaded into the system
+     */
     public Doc[] getDocs() {
         return docs;
     }

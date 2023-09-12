@@ -5,16 +5,20 @@ import java.util.List;
 public class Result implements Comparable<Result> {
     private Doc d;
     private List<Match> matches;
-
+    // constructor
     public Result(Doc d, List<Match> matches) {
         this.d = d;
         this.matches = matches;
     }
-
+    // Getter
     public List<Match> getMatches() {
         return matches;
     }
 
+    /**
+     * 
+     * @return the total frequency of all matched words in the document
+     */
     public int getTotalFrequency() {
         int totalFrequency = 0;
         for (Match match : matches) {
@@ -23,6 +27,10 @@ public class Result implements Comparable<Result> {
         return totalFrequency;
     }
 
+    /**
+     * 
+     * @return the average first index of all matched words in the document
+     */
     public double getAverageFirstIndex() {
         double totalFirstIndex = 0;
         for (Match match : matches) {

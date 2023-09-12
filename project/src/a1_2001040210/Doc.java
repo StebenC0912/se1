@@ -8,6 +8,7 @@ public class Doc {
     private List<Word> title;
     private List<Word> body;
 
+    // constructor
     public Doc(String content) {
         String[] lines = content.split("\\n");
         String titleString = lines[0];
@@ -27,12 +28,15 @@ public class Doc {
         this.body = docBody;
     }
 
+    // getter
     public List<Word> getTitle() {
         return title;
     }
+
     public List<Word> getBody() {
         return body;
     }
+
     @Override
     public boolean equals(Object o) {
         if (o instanceof Doc) {

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Doc {
-    private String content;
     private List<Word> title;
     private List<Word> body;
 
@@ -23,7 +22,6 @@ public class Doc {
             Word word = Word.createWord(wordString);
             docBody.add(word);
         }
-        this.content = content;
         this.title = docTitle;
         this.body = docBody;
     }
